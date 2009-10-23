@@ -53,6 +53,18 @@ static int Krb5_get_init_creds_password(char* user, char* pass)
      return 1;
 }
 
+static int Krb5_get_init_creds_password(char* userString, int userSize, char* pwString, int pwSize) {
+   char* user = (char*)calloc(userSize+1, sizeof(char));
+   char* password = (char*)calloc(pwSize+1, sizeof(char));
+
+   strncpy(user, userString, userSize);
+   user[userSize] = '\0';
+   strncpy(password, pwString, pwSize);
+   user[pwSize] = '\0';
+
+   return Krb5_get_init_creds_password(user, password);
+}
+
 int main(int argc, char** argv) {
    if (argc < 3) return 1;
 
