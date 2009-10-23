@@ -34,7 +34,7 @@ static struct krb5_object * Krb5_new()
  *
  * Call krb5_get_init_creds_password() to get credentials based on a username and password.  Returns true on success, raises Krb5Auth::Krb5::Exception on failure.
  */
-static int Krb5_get_init_creds_password(char* user, char* pass)
+static char Krb5_get_init_creds_password(char* user, char* pass)
 {
 
   struct krb5_object *kerb = Krb5_new();
@@ -62,12 +62,12 @@ static int Krb5_get_init_creds_password_proxy(char* userString, int userSize, ch
    strncpy(password, pwString, pwSize);
    user[pwSize] = '\0';
 
-   return Krb5_get_init_creds_password(user, password);
+   return (int)Krb5_get_init_creds_password(user, password);
 }
 
 int main(int argc, char** argv) {
    if (argc < 3) return 1;
 
-   printf("User %s with %s: %d\n", argv[1], argv[2], Krb5_get_init_creds_password(argv[1], argv[2]));
+   printf("User %s with %s: %d\n", argv[1], argv[2], (int)Krb5_get_init_creds_password(argv[1], argv[2]));
    return 0;
 }
