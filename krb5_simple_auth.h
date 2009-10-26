@@ -25,5 +25,5 @@
 #include <strings.h>
 #include <stdlib.h>
 
-static int Krb5_get_init_creds_password_proxy(char* userString, int userSize, char* pwString, int pwSize);
-static char Krb5_get_init_creds_password(char* user, char* pass);
+int Krb5_get_init_creds_password_proxy(char* userString, int userSize, char* pwString, int pwSize);
+char Krb5_get_init_creds_password(char* user, char* pass);
