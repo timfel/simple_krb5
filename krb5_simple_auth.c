@@ -38,7 +38,7 @@ struct krb5_object * Krb5_new()
  * and password.  Returns true on success, raises Krb5Auth::Krb5::Exception 
  * on failure.
  */
-char Krb5_get_init_creds_password(char* user, char* pass)
+int Krb5_get_init_creds_password(char* user, char* pass)
 {
 
   struct krb5_object *kerb = Krb5_new();
@@ -46,7 +46,7 @@ char Krb5_get_init_creds_password(char* user, char* pass)
 
   krbret = krb5_parse_name(kerb->ctx, user, &kerb->princ);
   if (krbret) {
-    //fail 
+    //fail
   }
 
   krbret = krb5_get_init_creds_password(kerb->ctx, &kerb->creds, kerb->princ,
@@ -58,7 +58,7 @@ char Krb5_get_init_creds_password(char* user, char* pass)
 }
 
 int Krb5_get_init_creds_password_proxy(char* userString, int userSize, 
-      char* pwString, int pwSize) {
+   char* pwString, int pwSize) {
    char* user = (char*)calloc(userSize+1, sizeof(char));
    char* password = (char*)calloc(pwSize+1, sizeof(char));
 
@@ -67,7 +67,7 @@ int Krb5_get_init_creds_password_proxy(char* userString, int userSize,
    strncpy(password, pwString, pwSize);
    user[pwSize] = '\0';
 
-   return (int)Krb5_get_init_creds_password(user, password);
+   return Krb5_get_init_creds_password(user, password);
 }
 
 int main(int argc, char** argv) {
