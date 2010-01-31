@@ -12,4 +12,4 @@ krb5_simple_auth: krb5_simple_auth.c
 	gcc -m32 -o krb5_simple_auth -I. -lkrb5 krb5_simple_auth.c
 
 clean:
-	rm *.o *.so.*
+	rm *.o *.so.* *.so
